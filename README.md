@@ -14,6 +14,7 @@
 	- [更新资源](#更新资源)
 	- [删除资源](#删除资源)
 - [Error对象](#error对象)
+- [登录授权约定](#登录授权约定)
 
 ## 基本
 
@@ -23,19 +24,29 @@
 常用的HTTP动词有下面四个（括号里是对应的SQL命令）。
 
 >GET（SELECT）：从服务器取出资源（一项或多项）。
+
 >POST（CREATE）：在服务器新建一个资源。
+
 >PUT（UPDATE）：在服务器更新资源。
+
 >DELETE（DELETE）：从服务器删除资源。
+
 >PATCH（UPDATE）：部分更新资源
 
 下面是一些例子。
 
 >GET /users：列出所有用户
+
 >POST /users：新建一个用户
+
 >GET /users/ID：获取某个指定用户的信息
+
 >PUT /users/ID：更新某个指定用户的信息
+
 >DELETE /users/ID：删除某个用户
+
 >GET /users/ID/roles ：列出某个指定用户下的所有角色
+
 >GET /users/ID/roles/ID：获取某个指定用户下的某个角色
 
 ### 返回数据格式
@@ -44,8 +55,8 @@
 
 ```
 {
-	// 返回具体的业务数据，单个资源返回Object类型，资源集合返回Array类型
-	// data和error不能同时存在。
+    // 返回具体的业务数据，单个资源返回Object类型，资源集合返回Array类型
+    // data和error不能同时存在。
     data: {},
     // 错误对象
     error: {
@@ -62,8 +73,8 @@
 	    size: 10,
 	    total: 100
 	},
-	// 存储额外的信息
-	meta: {}
+    // 存储额外的信息
+    meta: {}
 }
 ```
 
@@ -241,6 +252,9 @@ DELETE /users/1 HTTP/1.1
 	message: '名称重复了'
 }
 ```
+
+## 登录授权约定
+统一使用基于OA的[SSO单点登录方案](http://cf.meitu.com/confluence/pages/viewpage.action?pageId=50871007)
 
 ---------------------------------------
 **标注**：
