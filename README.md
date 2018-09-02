@@ -1,4 +1,4 @@
-# RESTful API 最佳实践
+# Simple RESTful API
 
 - [基本](#基本)
 	- [HTTP请求方法规则](#http请求方法规则)
@@ -15,6 +15,12 @@
 	- [删除资源](#删除资源)
 - [Error对象](#error对象)
 - [登录授权约定](#登录授权约定)
+
+## 介绍
+
+目前市面上已存在很多遵循 `RESTful` 风格的技术规范，但大多太过复杂，学习门槛较高，且在实际业务开发中，要遵循所有的约定，也会使得开发变得繁琐。本文旨在建立一套简单的 `RESTful API` 规范，并给出相应的前后端实现（如蜗牛一般慢慢地开hua中），方便开发出优雅而又具有可维护性的 api 。
+
+注：技术规范持续更新中...
 
 ## 基本
 
@@ -88,6 +94,7 @@ Code | Meaning
 401 Unauthorized | 授权信息非法或未送达。
 403 Forbidden | 已授权登陆的用户无权限访问该接口。
 404 Not Found | 资源未找到。
+422 Unprocessable Entity | 资源校验未通过
 500&nbsp;Internal&nbsp;Server&nbsp;Error | 服务器内部错误。
 
 ## 获取数据
@@ -252,10 +259,6 @@ DELETE /users/1 HTTP/1.1
 	message: '名称重复了'
 }
 ```
-
-## 登录授权约定
-统一使用基于OA的[SSO单点登录方案](http://cf.meitu.com/confluence/pages/viewpage.action?pageId=50871007)
-
 ---------------------------------------
 **标注**：
 1.创建或更新资源成功需要返回完整资源对象的原因在于，有些属性值服务端会按照一定的业务逻辑去更新，而不需要客户端发送该属性的值，例如`updateTime`。
